@@ -1,24 +1,56 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { MouseEvent } from "react";
 
 type ButtonProps = {
-  buttonValue: string;
-  buttonType: "number" | "operator";
-  setEquation: Dispatch<SetStateAction<string>>;
-}
-
-const Button = ({ buttonValue, buttonType, setEquation }: ButtonProps): JSX.Element => {
-  const updateEquation = () => {
-    setEquation((prevEquation: string) => prevEquation.concat(buttonValue))
-  }
-
-  return (
-    <button
-      className={`button ${buttonType === "number" ? "button--number" : "button--operator"}`}
-      onClick={() => updateEquation()}
-    >
-      {buttonValue}
-    </button>
-  );
+    buttonValue: string;
+    buttonType: "number" | "operator";
+    setOperator?: React.Dispatch<React.SetStateAction<string>>;
+    setClickedValue?: React.Dispatch<React.SetStateAction<string>>;
+    setFirstNum?: React.Dispatch<React.SetStateAction<string | undefined>>;
+    clickedValue?: string;
+    solveEquation?: () => void;
 };
 
-export default Button
+const Button = ({
+    buttonValue,
+    buttonType,
+    setOperator,
+    setClickedValue,
+    setFirstNum,
+    clickedValue,
+    solveEquation,
+}: ButtonProps): JSX.Element => {
+    const handleClick = (e: MouseEvent<Element>): void => {
+        if (buttonValue === "=") {
+            solveEquation?.();
+        } else {
+            setUpEquation();
+        }
+    };
+    const setUpEquation = () => {
+        const operators: string[] = ["+", "-", "*", "/"];
+        if (operators.includes(buttonValue)) {
+            setFirstNum?.(clickedValue);
+            setClickedValue?.("");
+            setOperator?.(buttonValue);
+        } else if (buttonValue === ".") {
+            if (clickedValue?.indexOf(".") === -1) {
+                setClickedValue?.((value) => value + buttonValue);
+            }
+        } else {
+            setClickedValue?.((value) => value + buttonValue);
+        }
+    };
+
+    return (
+        <button
+            className={`button ${
+                buttonType === "number" ? "button--number" : "button--operator"
+            }`}
+            onClick={handleClick}
+        >
+            {buttonValue}
+        </button>
+    );
+};
+
+export default Button;

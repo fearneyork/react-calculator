@@ -3,7 +3,7 @@ import Button from "./Button";
 
 describe('Button tests', () => {
   test('should check that button renders with a value when passed', () => {
-    render(<Button buttonValue="0" buttonType="number" setEquation={() => { }} />);
+    render(<Button buttonValue="0" buttonType="number" />);
     const buttonText = screen.getByText("0");
     expect(buttonText).toBeInTheDocument();
   });
