@@ -48,6 +48,18 @@ function App() {
                 setSecondNum("");
                 setOperator("");
             }
+            if (operator === "/" && firstNum) {
+                setClickedValue((+firstNum / +secondNum).toString());
+                setFirstNum("");
+                setSecondNum("");
+                setOperator("");
+            }
+            if (operator === "*" && firstNum) {
+                setClickedValue((+firstNum * +secondNum).toString());
+                setFirstNum("");
+                setSecondNum("");
+                setOperator("");
+            }
         }
     }, [firstNum, operator, secondNum]);
 
@@ -57,6 +69,7 @@ function App() {
             <p>
                 {firstNum} {operator} {clickedValue}
             </p>
+
             {buttonsToCreate.map((value) => {
                 if (value === "=") {
                     return (
