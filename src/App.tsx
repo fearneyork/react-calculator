@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Button from "./Button/Button";
+import ClearButton from "./ClearButton/ClearButton";
 
 const buttonsToCreate: string[] = [
     "7",
@@ -23,7 +24,7 @@ const buttonsToCreate: string[] = [
 
 function App() {
     const [clickedValue, setClickedValue] = useState("");
-    const [firstNum, setFirstNum] = useState<string | undefined>("");
+    const [firstNum, setFirstNum] = useState<string | undefined>("0");
     const [secondNum, setSecondNum] = useState("");
     const [operator, setOperator] = useState("");
 
@@ -32,8 +33,6 @@ function App() {
     };
 
     useEffect(() => {
-        console.log("effect");
-
         if (secondNum && operator) {
             if (operator === "+" && firstNum) {
                 setClickedValue((+firstNum + +secondNum).toString());
@@ -67,9 +66,18 @@ function App() {
         <>
             <h1>React Calculator App</h1>
             <p>
-                {firstNum} {operator} {clickedValue}
+                {firstNum !== "0" ? firstNum : ""} {operator}
+                {clickedValue}
             </p>
-
+            <ClearButton
+                key="clear"
+                buttonValue="clear"
+                buttonType="clear"
+                setOperator={setOperator}
+                setFirstNum={setFirstNum}
+                setSecondNum={setSecondNum}
+                setClickedValue={setClickedValue}
+            />
             {buttonsToCreate.map((value) => {
                 if (value === "=") {
                     return (
