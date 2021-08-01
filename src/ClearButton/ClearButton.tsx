@@ -1,3 +1,5 @@
+import "./ClearButton.css";
+
 type ClearButtonProps = {
     setOperator: React.Dispatch<React.SetStateAction<string>>;
     setFirstNum: React.Dispatch<React.SetStateAction<string>>;

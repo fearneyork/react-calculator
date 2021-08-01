@@ -28,6 +28,8 @@ function App() {
     const [firstNum, setFirstNum] = useState("");
     const [secondNum, setSecondNum] = useState("");
     const [operator, setOperator] = useState("");
+    const [chainedOperator, setChainedOperator] = useState("");
+    const [chainEquation, setChainEquation] = useState(true);
 
     const solveEquation = () => {
         if (firstNum) {
@@ -38,26 +40,26 @@ function App() {
     useEffect(() => {
         if (secondNum && operator) {
             if (operator === "+") {
-                setClickedValue((+firstNum + +secondNum).toString());
+                setFirstNum((+firstNum + +secondNum).toString());
             }
             if (operator === "-") {
-                setClickedValue((+firstNum - +secondNum).toString());
+                setFirstNum((+firstNum - +secondNum).toString());
             }
             if (operator === "÷") {
-                setClickedValue((+firstNum / +secondNum).toString());
+                setFirstNum((+firstNum / +secondNum).toString());
             }
             if (operator === "x") {
-                setClickedValue((+firstNum * +secondNum).toString());
+                setFirstNum((+firstNum * +secondNum).toString());
             }
-            clearOnSolve();
+            setClickedValue("");
+            setSecondNum("");
+            if (!chainEquation) {
+                setOperator("");
+            } else {
+                setOperator(chainedOperator);
+            }
         }
-    }, [firstNum, operator, secondNum]);
-
-    const clearOnSolve = (): void => {
-        setFirstNum("");
-        setSecondNum("");
-        setOperator("");
-    };
+    }, [chainEquation, chainedOperator, firstNum, operator, secondNum]);
 
     return (
         <main className="calculator">
@@ -81,6 +83,7 @@ function App() {
                         return (
                             <EqualsButton
                                 key={value}
+                                setChainEquation={setChainEquation}
                                 solveEquation={solveEquation}
                             />
                         );
@@ -98,6 +101,7 @@ function App() {
                                 firstNum={firstNum}
                                 clickedValue={clickedValue}
                                 solveEquation={solveEquation}
+                                setChainedOperator={setChainedOperator}
                             />
                         );
                     }

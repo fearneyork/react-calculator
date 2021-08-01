@@ -1,11 +1,16 @@
 import React from "react";
 
 type EqualsButtonProps = {
+    setChainEquation: React.Dispatch<React.SetStateAction<boolean>>;
     solveEquation: () => void;
 };
 
-const EqualsButton = ({ solveEquation }: EqualsButtonProps): JSX.Element => {
+const EqualsButton = ({
+    setChainEquation,
+    solveEquation,
+}: EqualsButtonProps): JSX.Element => {
     const handleSolve = (): void => {
+        setChainEquation(false);
         solveEquation();
     };
 
