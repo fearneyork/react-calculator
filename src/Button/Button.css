@@ -8,13 +8,22 @@
     border: none;
     border-radius: 15%;
     box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.3);
-    box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
-.button.button--number {
+.button:active {
+    box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.3) inset;
+}
+
+.button--number {
     background-color: grey;
 }
 
-.button.button--operator {
+.button--operator {
     background-color: orange;
+}
+
+.button--clear {
+    background-color: lightgray;
+    flex-shrink: 0;
+    margin-left: 10px;
 }

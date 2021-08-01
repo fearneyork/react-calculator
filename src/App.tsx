@@ -65,19 +65,20 @@ function App() {
     return (
         <main className="calculator">
             <h1 className="calculator__title">React Calculator App</h1>
-            <p className="calculator__viewport">
-                {firstNum !== "0" ? firstNum : ""} {operator}
-                {clickedValue}
-            </p>
-            <ClearButton
-                key="clear"
-                buttonValue="clear"
-                buttonType="clear"
-                setOperator={setOperator}
-                setFirstNum={setFirstNum}
-                setSecondNum={setSecondNum}
-                setClickedValue={setClickedValue}
-            />
+            <section className="calculator__upper-container">
+                <div className="calculator__viewport">
+                    <p className="calculator__viewport-content">
+                        {firstNum !== "0" ? firstNum : ""} {operator}
+                        {clickedValue}
+                    </p>
+                </div>
+                <ClearButton
+                    setOperator={setOperator}
+                    setFirstNum={setFirstNum}
+                    setSecondNum={setSecondNum}
+                    setClickedValue={setClickedValue}
+                />
+            </section>
             <section className="calculator__keypad">
                 {buttonsToCreate.map((value) => {
                     if (value === "=") {

@@ -1,6 +1,4 @@
 type ClearButtonProps = {
-    buttonValue: string;
-    buttonType: string;
     setOperator: React.Dispatch<React.SetStateAction<string>>;
     setFirstNum: React.Dispatch<React.SetStateAction<string | undefined>>;
     setSecondNum: React.Dispatch<React.SetStateAction<string>>;
@@ -8,8 +6,6 @@ type ClearButtonProps = {
 };
 
 const ClearButton = ({
-    buttonValue,
-    buttonType,
     setOperator,
     setFirstNum,
     setSecondNum,
@@ -23,8 +19,8 @@ const ClearButton = ({
     };
 
     return (
-        <button className={buttonType} onClick={clearEquation}>
-            {buttonValue}
+        <button className="button button--clear" onClick={clearEquation}>
+            C
         </button>
     );
 };

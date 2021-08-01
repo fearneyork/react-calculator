@@ -1,6 +1,10 @@
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .calculator {
-    position: absolute;
-    left: 50%;
     background-color: grey;
     width: 430px;
     display: flex;
@@ -15,14 +19,30 @@
     align-items: center;
 }
 
+.calculator__upper-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .calculator__viewport {
     font-family: "Press Start 2P", cursive;
     color: white;
-    text-decoration: none;
     font-size: 1.5rem;
+    background-color: rgb(22, 22, 22);
+    width: 100%;
+    min-height: 55px;
+    border-radius: 10px;
     display: flex;
-    flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
+    padding: 10px;
+}
+
+.calculator__viewport-content {
+    margin: 0;
+    word-break: break-all;
 }
 
 .calculator__keypad {
