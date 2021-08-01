@@ -55,6 +55,7 @@ function App() {
             setSecondNum("");
             if (!chainEquation) {
                 setOperator("");
+                setChainEquation(true);
             } else {
                 setOperator(chainedOperator);
             }
@@ -75,6 +76,7 @@ function App() {
                     setFirstNum={setFirstNum}
                     setSecondNum={setSecondNum}
                     setClickedValue={setClickedValue}
+                    setChainedOperator={setChainedOperator}
                 />
             </section>
             <section className="calculator__keypad">
@@ -101,6 +103,7 @@ function App() {
                                 firstNum={firstNum}
                                 clickedValue={clickedValue}
                                 solveEquation={solveEquation}
+                                operator={operator}
                                 setChainedOperator={setChainedOperator}
                             />
                         );

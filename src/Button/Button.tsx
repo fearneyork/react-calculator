@@ -10,6 +10,7 @@ type ButtonProps = {
     firstNum: string;
     clickedValue: string;
     solveEquation: () => void;
+    operator: string;
     setChainedOperator: React.Dispatch<React.SetStateAction<string>>;
 };
 
@@ -22,6 +23,7 @@ const Button = ({
     clickedValue,
     solveEquation,
     firstNum,
+    operator,
     setChainedOperator,
 }: ButtonProps): JSX.Element => {
     const setUpEquation = () => {
@@ -33,12 +35,27 @@ const Button = ({
                 setClickedValue((value) => value + buttonValue);
             }
         } else {
+            determineOverwriteOnOperation();
+        }
+    };
+
+    const determineOverwriteOnOperation = (): void => {
+        if (!firstNum && !operator && !clickedValue) {
             setClickedValue((value) => value + buttonValue);
+        } else if (firstNum && operator) {
+            setClickedValue((value) => value + buttonValue);
+        } else if (!firstNum && !operator) {
+            setClickedValue((value) => value + buttonValue);
+        } else if (firstNum && !operator) {
+            setFirstNum("");
+            setClickedValue(buttonValue);
         }
     };
 
     const checkForMultipleOperator = (): void => {
-        if (firstNum && clickedValue) {
+        if (!clickedValue) {
+            return;
+        } else if (firstNum && clickedValue) {
             solveEquation();
             setChainedOperator(buttonValue);
         } else if (firstNum && !clickedValue) {
