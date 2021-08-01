@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Button from "./Button/Button";
 import ClearButton from "./ClearButton/ClearButton";
+import EqualsButton from "./EqualsButton/EqualsButton";
 
 const buttonsToCreate: string[] = [
     "7",
@@ -24,43 +25,39 @@ const buttonsToCreate: string[] = [
 
 function App() {
     const [clickedValue, setClickedValue] = useState("");
-    const [firstNum, setFirstNum] = useState<string | undefined>("0");
+    const [firstNum, setFirstNum] = useState("");
     const [secondNum, setSecondNum] = useState("");
     const [operator, setOperator] = useState("");
 
     const solveEquation = () => {
-        setSecondNum(clickedValue);
+        if (firstNum) {
+            setSecondNum(clickedValue);
+        }
     };
 
     useEffect(() => {
         if (secondNum && operator) {
-            if (operator === "+" && firstNum) {
+            if (operator === "+") {
                 setClickedValue((+firstNum + +secondNum).toString());
-                // following funcs can be reduced to a clear function that is also used on click for clear button
-                setFirstNum("");
-                setSecondNum("");
-                setOperator("");
             }
-            if (operator === "-" && firstNum) {
+            if (operator === "-") {
                 setClickedValue((+firstNum - +secondNum).toString());
-                setFirstNum("");
-                setSecondNum("");
-                setOperator("");
             }
-            if (operator === "÷" && firstNum) {
+            if (operator === "÷") {
                 setClickedValue((+firstNum / +secondNum).toString());
-                setFirstNum("");
-                setSecondNum("");
-                setOperator("");
             }
-            if (operator === "x" && firstNum) {
+            if (operator === "x") {
                 setClickedValue((+firstNum * +secondNum).toString());
-                setFirstNum("");
-                setSecondNum("");
-                setOperator("");
             }
+            clearOnSolve();
         }
     }, [firstNum, operator, secondNum]);
+
+    const clearOnSolve = (): void => {
+        setFirstNum("");
+        setSecondNum("");
+        setOperator("");
+    };
 
     return (
         <main className="calculator">
@@ -68,8 +65,7 @@ function App() {
             <section className="calculator__upper-container">
                 <div className="calculator__viewport">
                     <p className="calculator__viewport-content">
-                        {firstNum !== "0" ? firstNum : ""} {operator}
-                        {clickedValue}
+                        {firstNum} {operator} {clickedValue}
                     </p>
                 </div>
                 <ClearButton
@@ -83,12 +79,8 @@ function App() {
                 {buttonsToCreate.map((value) => {
                     if (value === "=") {
                         return (
-                            <Button
+                            <EqualsButton
                                 key={value}
-                                buttonValue={value}
-                                buttonType={
-                                    value.match(/[0-9]/) ? "number" : "operator"
-                                }
                                 solveEquation={solveEquation}
                             />
                         );
@@ -103,7 +95,9 @@ function App() {
                                 setOperator={setOperator}
                                 setClickedValue={setClickedValue}
                                 setFirstNum={setFirstNum}
+                                firstNum={firstNum}
                                 clickedValue={clickedValue}
+                                solveEquation={solveEquation}
                             />
                         );
                     }

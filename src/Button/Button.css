@@ -3,7 +3,6 @@
     color: white;
     text-decoration: none;
     font-size: 1.5rem;
-    width: 100px;
     height: 75px;
     border: none;
     border-radius: 15%;
@@ -20,10 +19,4 @@
 
 .button--operator {
     background-color: orange;
-}
-
-.button--clear {
-    background-color: lightgray;
-    flex-shrink: 0;
-    margin-left: 10px;
 }

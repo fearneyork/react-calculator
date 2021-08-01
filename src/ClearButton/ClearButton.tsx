@@ -1,6 +1,6 @@
 type ClearButtonProps = {
     setOperator: React.Dispatch<React.SetStateAction<string>>;
-    setFirstNum: React.Dispatch<React.SetStateAction<string | undefined>>;
+    setFirstNum: React.Dispatch<React.SetStateAction<string>>;
     setSecondNum: React.Dispatch<React.SetStateAction<string>>;
     setClickedValue: React.Dispatch<React.SetStateAction<string>>;
 };
