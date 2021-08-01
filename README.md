@@ -49,6 +49,7 @@ This is a calculator app that supports the following operations:
 Additional features:
 
 -   Clear operation
+-   Chaining equations
 
 ## Built With
 
@@ -76,6 +77,19 @@ Additional features:
 -   The project will be written to be a web application, using React
 
 ## Limitations
+
+### Lack of testing
+
+Due to short amount of time, functionality was prioritised over testing, however if the project was larger then testing would be a priority.
+Testing would be implemented using Jest, as well as either Enzyme or React Testing Library.
+
+### Only basic operations
+
+Currently the calculator can only perform basic operations, however if the future features were to be added it would start to inherit some features of a scientific calculator.
+
+### No number key support
+
+Another feature that is on the roadmap for the the future, is to allow keyboard input, which is on list for future features. Again due to the time contstraints I decided to leave this feature out of the MVP.
 
 ## How to run
 
@@ -112,3 +126,4 @@ Additional features:
 -   Ability to add brackets to equations to indicate excution preference
 -   Ability to use percentage operation in equations
 -   Ability to square or cube number in viewport
+-   Ability to use keyboard to press buttons
