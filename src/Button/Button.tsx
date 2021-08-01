@@ -1,4 +1,5 @@
 import React, { MouseEvent } from "react";
+import "./Button.css";
 
 type ButtonProps = {
     buttonValue: string;
@@ -27,7 +28,7 @@ const Button = ({
         }
     };
     const setUpEquation = () => {
-        const operators: string[] = ["+", "-", "*", "/"];
+        const operators: string[] = ["+", "-", "x", "÷"];
         if (operators.includes(buttonValue)) {
             setFirstNum?.(clickedValue);
             setClickedValue?.("");

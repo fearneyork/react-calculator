@@ -7,11 +7,11 @@ const buttonsToCreate: string[] = [
     "7",
     "8",
     "9",
-    "/",
+    "÷",
     "4",
     "5",
     "6",
-    "*",
+    "x",
     "1",
     "2",
     "3",
@@ -47,13 +47,13 @@ function App() {
                 setSecondNum("");
                 setOperator("");
             }
-            if (operator === "/" && firstNum) {
+            if (operator === "÷" && firstNum) {
                 setClickedValue((+firstNum / +secondNum).toString());
                 setFirstNum("");
                 setSecondNum("");
                 setOperator("");
             }
-            if (operator === "*" && firstNum) {
+            if (operator === "x" && firstNum) {
                 setClickedValue((+firstNum * +secondNum).toString());
                 setFirstNum("");
                 setSecondNum("");
@@ -63,9 +63,9 @@ function App() {
     }, [firstNum, operator, secondNum]);
 
     return (
-        <>
-            <h1>React Calculator App</h1>
-            <p>
+        <main className="calculator">
+            <h1 className="calculator__title">React Calculator App</h1>
+            <p className="calculator__viewport">
                 {firstNum !== "0" ? firstNum : ""} {operator}
                 {clickedValue}
             </p>
@@ -78,35 +78,37 @@ function App() {
                 setSecondNum={setSecondNum}
                 setClickedValue={setClickedValue}
             />
-            {buttonsToCreate.map((value) => {
-                if (value === "=") {
-                    return (
-                        <Button
-                            key={value}
-                            buttonValue={value}
-                            buttonType={
-                                value.match(/[0-9]/) ? "number" : "operator"
-                            }
-                            solveEquation={solveEquation}
-                        />
-                    );
-                } else {
-                    return (
-                        <Button
-                            key={value}
-                            buttonValue={value}
-                            buttonType={
-                                value.match(/[0-9]/) ? "number" : "operator"
-                            }
-                            setOperator={setOperator}
-                            setClickedValue={setClickedValue}
-                            setFirstNum={setFirstNum}
-                            clickedValue={clickedValue}
-                        />
-                    );
-                }
-            })}
-        </>
+            <section className="calculator__keypad">
+                {buttonsToCreate.map((value) => {
+                    if (value === "=") {
+                        return (
+                            <Button
+                                key={value}
+                                buttonValue={value}
+                                buttonType={
+                                    value.match(/[0-9]/) ? "number" : "operator"
+                                }
+                                solveEquation={solveEquation}
+                            />
+                        );
+                    } else {
+                        return (
+                            <Button
+                                key={value}
+                                buttonValue={value}
+                                buttonType={
+                                    value.match(/[0-9]/) ? "number" : "operator"
+                                }
+                                setOperator={setOperator}
+                                setClickedValue={setClickedValue}
+                                setFirstNum={setFirstNum}
+                                clickedValue={clickedValue}
+                            />
+                        );
+                    }
+                })}
+            </section>
+        </main>
     );
 }
 
