@@ -1,5 +1,3 @@
-import React from "react";
-
 type EqualsButtonProps = {
     setChainEquation: React.Dispatch<React.SetStateAction<boolean>>;
     solveEquation: () => void;
@@ -10,6 +8,7 @@ const EqualsButton = ({
     solveEquation,
 }: EqualsButtonProps): JSX.Element => {
     const handleSolve = (): void => {
+        // on equals chained equations are terminated
         setChainEquation(false);
         solveEquation();
     };

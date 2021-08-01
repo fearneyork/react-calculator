@@ -1,3 +1,4 @@
+// Styles
 import "./ClearButton.css";
 
 type ClearButtonProps = {
@@ -15,6 +16,7 @@ const ClearButton = ({
     setClickedValue,
     setChainedOperator,
 }: ClearButtonProps): JSX.Element => {
+    // clears all state
     const clearEquation = () => {
         setFirstNum("");
         setSecondNum("");

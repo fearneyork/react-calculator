@@ -91,6 +91,10 @@ Currently the calculator can only perform basic operations, however if the futur
 
 Another feature that is on the roadmap for the the future, is to allow keyboard input, which is on list for future features. Again due to the time contstraints I decided to leave this feature out of the MVP.
 
+### Some unescessary useEffect calls
+
+There's a lot of dependencies to the useEffect in App.tsx when the only absolute dependency is secondNum being set/changed. It would be good to go back and refactor this in a way that is more efficient. Further research into useCallback would be beneficial.
+
 ## How to run
 
 ### Prerequisites

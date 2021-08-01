@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+// Components
 import Button from "./Button/Button";
 import ClearButton from "./ClearButton/ClearButton";
 import EqualsButton from "./EqualsButton/EqualsButton";
+// Styles
+import "./App.css";
 
 const buttonsToCreate: string[] = [
     "7",
@@ -23,22 +25,31 @@ const buttonsToCreate: string[] = [
     "+",
 ];
 
-function App() {
+const App = () => {
+    // holding state for numbers value string
     const [clickedValue, setClickedValue] = useState("");
+    // set to the value of clickedValue when operator is chosen
     const [firstNum, setFirstNum] = useState("");
+    // set to the value of clickedVale when solveEquation is called
     const [secondNum, setSecondNum] = useState("");
+    // set to the value of the chosen operator
     const [operator, setOperator] = useState("");
+    // set to carry the operator value for chained equations
     const [chainedOperator, setChainedOperator] = useState("");
+    // flag for chained operation checks
     const [chainEquation, setChainEquation] = useState(true);
 
-    const solveEquation = () => {
+    const solveEquation = (): void => {
+        // prevents solve on incomplete equation
         if (firstNum) {
             setSecondNum(clickedValue);
         }
     };
 
     useEffect(() => {
+        // only solve equation if values exist
         if (secondNum && operator) {
+            // checks for operator values
             if (operator === "+") {
                 setFirstNum((+firstNum + +secondNum).toString());
             }
@@ -51,8 +62,12 @@ function App() {
             if (operator === "x") {
                 setFirstNum((+firstNum * +secondNum).toString());
             }
+
+            // clears values on solve
             setClickedValue("");
             setSecondNum("");
+
+            // use chainEquation boolean to determine whether to clear or set operator
             if (!chainEquation) {
                 setOperator("");
                 setChainEquation(true);
@@ -97,14 +112,14 @@ function App() {
                                 buttonType={
                                     value.match(/[0-9]/) ? "number" : "operator"
                                 }
+                                operator={operator}
+                                clickedValue={clickedValue}
+                                firstNum={firstNum}
                                 setOperator={setOperator}
                                 setClickedValue={setClickedValue}
                                 setFirstNum={setFirstNum}
-                                firstNum={firstNum}
-                                clickedValue={clickedValue}
-                                solveEquation={solveEquation}
-                                operator={operator}
                                 setChainedOperator={setChainedOperator}
+                                solveEquation={solveEquation}
                             />
                         );
                     }
@@ -112,6 +127,6 @@ function App() {
             </section>
         </main>
     );
-}
+};
 
 export default App;
